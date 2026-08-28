@@ -1,0 +1,16 @@
+# Compiled class files
+*.class
+# Package files
+*.jar
+# Build output
+build/
+target/
+out/
+# IDE
+.idea/
+*.iml
+.vscode/
+# OS
+.DS_Store
+# Logs
+*.log
