@@ -1,13 +1,10 @@
-public class SaveToDb {
-    
-    int orderId;
-    SaveToDb(int orderId){
-        this.orderId = orderId;
-    }
 
-    public void saveToDatabase() {
+interface OrderRepository {
+    void save(Order order);
+}
 
-        System.out.println("Connecting to MySQL...");
-        System.out.println("Saving order " + orderId);
+class OrderRepositoryImpl implements OrderRepository {
+    public void save(Order order) {
+        System.out.println("Saving order " + order.getOrderId());
     }
 }

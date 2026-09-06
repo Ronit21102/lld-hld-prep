@@ -2,45 +2,57 @@ interface IPaymentService {
     void processPayment();
     void refundPayment();
 }
+
+interface PaymentMethod{
+    void process();
+    void refund();
+}
 public class PaymentService implements IPaymentService {
 
-    private String paymentMethod;
+    private PaymentMethod paymentMethod;
 
-    public PaymentService(String paymentMethod) {
+    public PaymentService(PaymentMethod paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
    
     @Override
     public void processPayment() {
 
-        if (paymentMethod.equals("CARD")) {
-            System.out.println("Processing Card payment");
-        }
-        else if (paymentMethod.equals("UPI")) {
-            System.out.println("Processing UPI payment");
-        }
-        else if (paymentMethod.equals("PAYPAL")) {
-            System.out.println("Processing PayPal payment");
-        }
-        else if (paymentMethod.equals("CASH")) {
-            System.out.println("Cash on delivery");
-        }
+       paymentMethod.process();
     }
 
     @Override
     public void refundPayment() {
 
-        if (paymentMethod.equals("CARD")) {
-            System.out.println("Refunding Card payment");
-        }
-        else if (paymentMethod.equals("UPI")) {
-            System.out.println("Refunding UPI payment");
-        }
-        else if (paymentMethod.equals("PAYPAL")) {
-            System.out.println("Refunding PayPal payment");
-        }
-        else {
-            System.out.println("Refund not supported");
-        }
+       paymentMethod.refund();
+
     }
 }
+
+ class CardPayment implements PaymentMethod{
+    
+    @Override
+    public void process() {
+        System.out.println("Processing Card payment");
+    }
+    
+    @Override
+    public void refund() {
+        System.out.println("Refunding Card payment");
+    }
+}
+
+class UPIPayment implements PaymentMethod{
+    
+    @Override
+    public void process() {
+        System.out.println("Processing UPI payment");
+    }
+    
+    @Override
+    public void refund() {
+        System.out.println("Refunding UPI payment");
+    }
+}
+
+

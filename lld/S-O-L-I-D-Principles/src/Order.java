@@ -60,4 +60,11 @@ public class Order {
 
         System.out.println("Total: " + calculateTotal());
     }
+    public void refundPayment() {
+        System.out.println("Refunding payment...");
+    }
+    
+    public int getOrderId() {
+        return orderId;
+    }
 }

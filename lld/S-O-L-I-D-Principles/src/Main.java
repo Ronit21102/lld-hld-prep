@@ -1,12 +1,12 @@
 public class Main {
     public static void main(String[] args) {
        
-    NotificationService notificationService = new NotificationService("EMAIL","ronit21102@gmail.com","7061414395");
-    DeliveryPartner deliveryPartner =  new DeliveryPartner("BIKE");
+    NotificationService notificationService = new NotificationService(new EmailNotification(),"ronit21102@gmail.com","7061414395");
+    DeliveryPartner deliveryPartner =  new DeliveryPartner(new BikePartner());
     Order order = new Order(212,"ronit","ronit21102@gmail.com","7061414395");
-    PaymentService paymentService = new PaymentService("CARD");
+    PaymentService paymentService = new PaymentService(new CardPayment());
     Restaurant restaurant = new Restaurant();
-    SaveToDb db = new SaveToDb(212 );
-    FoodDeliverySystem fds = new FoodDeliverySystem(notificationService,deliveryPartner,order,paymentService,restaurant,db);
+    OrderRepository Order = new OrderRepositoryImpl();
+    FoodDeliverySystem fds = new FoodDeliverySystem(notificationService,deliveryPartner,order,paymentService,restaurant,Order);
     }
 }

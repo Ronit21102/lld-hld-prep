@@ -1,22 +1,20 @@
-public class DeliveryPartner {
 
-  String deliveryType;
+interface DeliveryVehicleType {
+    void assignDeliveryPartner();
+}
+
+
+public class DeliveryPartner  {
+
   
-  public DeliveryPartner(String deliveryType) {
+   private DeliveryVehicleType deliveryType;
+  
+  public DeliveryPartner(DeliveryVehicleType deliveryType) {
     this.deliveryType = deliveryType;
   }
   
   public void assignDeliveryPartner() {
-
-        if (deliveryType.equals("BIKE")) {
-            System.out.println("Assigning bike partner");
-        }
-        else if (deliveryType.equals("CAR")) {
-            System.out.println("Assigning car partner");
-        }
-        else if (deliveryType.equals("BICYCLE")) {
-            System.out.println("Assigning bicycle partner");
-        }
+      deliveryType.assignDeliveryPartner();
     }
 
   
@@ -30,5 +28,27 @@ public class DeliveryPartner {
 
     public void generateTaxReport() {
         System.out.println("Generating tax report");
+    }
+}
+
+
+class BikePartner implements DeliveryVehicleType {
+    @Override
+    public void assignDeliveryPartner() {
+        System.out.println("Assigning bike partner");
+    }
+}
+
+class CarPartner implements DeliveryVehicleType {
+    @Override
+    public void assignDeliveryPartner() {
+        System.out.println("Assigning car partner");
+    }
+}
+
+class BicyclePartner implements DeliveryVehicleType {
+    @Override
+    public void assignDeliveryPartner() {
+        System.out.println("Assigning bicycle partner");
     }
 }

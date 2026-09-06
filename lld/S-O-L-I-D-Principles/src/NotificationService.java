@@ -1,32 +1,44 @@
-interface INotificationService {
+
+
+interface NotificationType {
     void sendNotification();
 }
 
-public class NotificationService implements INotificationService {
+public class NotificationService  {
     
-    private String notificationType;
+    private NotificationType notificationType;
     private String customerEmail;
     private String customerPhone;
     
-    public NotificationService(String notificationType, String customerEmail, String customerPhone) {
+    public NotificationService(NotificationType notificationType, String customerEmail, String customerPhone) {
         this.notificationType = notificationType;
         this.customerEmail = customerEmail;
         this.customerPhone = customerPhone;
     }
     
+    public void sendNotification() {
+        notificationType.sendNotification();
+    }
+
+}
+
+class EmailNotification implements NotificationType {
     @Override
     public void sendNotification() {
+        System.out.println("Sending Email Notification");
+    }
+}
 
-        if (notificationType.equals("EMAIL")) {
-            System.out.println(
-                    "Sending Email to " + customerEmail);
-        }
-        else if (notificationType.equals("SMS")) {
-            System.out.println(
-                    "Sending SMS to " + customerPhone);
-        }
-        else if (notificationType.equals("PUSH")) {
-            System.out.println("Sending Push Notification");
-        }
+class SMSNotification implements NotificationType {
+    @Override
+    public void sendNotification() {
+        System.out.println("Sending SMS Notification");
+    }
+}
+
+class PushNotification implements NotificationType {
+    @Override
+    public void sendNotification() {
+        System.out.println("Sending Push Notification");
     }
 }

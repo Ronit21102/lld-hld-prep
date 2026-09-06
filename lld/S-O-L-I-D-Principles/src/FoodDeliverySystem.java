@@ -13,9 +13,9 @@ class FoodDeliverySystem implements IFoodDeliveryService {
     Order order;
     PaymentService paymentService;
     Restaurant restaurant;
-    SaveToDb db;
+    OrderRepository db;
 
-    public FoodDeliverySystem(NotificationService notificationService, DeliveryPartner deliveryPartner, Order order, PaymentService paymentService, Restaurant restaurant,SaveToDb db) {
+    public FoodDeliverySystem(NotificationService notificationService, DeliveryPartner deliveryPartner, Order order, PaymentService paymentService, Restaurant restaurant, OrderRepository   db) {
         this.notificationService = notificationService;
         this.deliveryPartner = deliveryPartner;
         this.order = order;
@@ -30,8 +30,7 @@ class FoodDeliverySystem implements IFoodDeliveryService {
          paymentService.processPayment();
         
          // order save to Db
-         db.saveToDatabase();
-         
+         db.save(order);
          // order send notification
          notificationService.sendNotification();
 
